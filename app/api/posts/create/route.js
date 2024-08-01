@@ -1,8 +1,16 @@
+import { descopeSdk } from "@/lib/descope";
 import { prismaClient } from "@/lib/prisma";
 
 export async function POST(request) {
     try {
         const data = await request.json();
+
+        // Make sure the user has the editor role
+        const userRoles = descopeSdk.getJwtRoles(data.sessionToken);
+
+        if (!userRoles?.includes("editor")) {
+            throw new Error("User is not an editor");
+        }
 
         // Retrieve user
         const user = await prismaClient.user.findUnique({

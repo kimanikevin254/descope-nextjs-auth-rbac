@@ -7,19 +7,24 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+import { useSession, useUser } from "@descope/nextjs-sdk/client";
 
 export default function Page(){
     const router = useRouter()
+    const { sessionToken } = useSession();
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
+
+    const { user } = useUser();
 
     const savePost = async () => {
         try {
             const { data } = await axios.post('/api/posts/create', {
                 title,
                 content,
-                descopeUserId: user?.userId
+                descopeUserId: user?.userId, 
+                sessionToken
             })
 
             if(data.error) {

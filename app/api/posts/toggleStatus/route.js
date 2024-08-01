@@ -4,6 +4,13 @@ export async function PUT(request){
     try {
         const data = await request.json();
 
+        // Make sure the user has the admin role
+        const userRoles = descopeSdk.getJwtRoles(data.sessionToken);
+
+        if (!userRoles?.includes("admin")) {
+            throw new Error("User is not an admin");
+        }
+
         const postExists = await prismaClient.post.findUnique({
             where: { id: Number(data.postId) }
         })

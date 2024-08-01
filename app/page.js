@@ -4,10 +4,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useUser } from "@descope/nextjs-sdk/client";
 
 export default function Home() {
 
   const [posts, setPosts] = useState([])
+  const { user } = useUser();
 
   const fetchPosts = async () => {
     try {
@@ -34,7 +36,16 @@ export default function Home() {
     <div className='max-w-screen-lg mx-auto'>
       <div className='flex justify-between items-center'>
         <h2 className='text-xl font-semibold'>Next.js Descope Auth & RBAC</h2>
-        <Link href={'/write'} className='px-4 py-1 border rounded-lg bg-black text-white'>Start Writing</Link>
+        {
+          user?.roleNames?.includes("editor") && (
+              <Link
+                  href={"/write"}
+                  className="px-4 py-1 border rounded-lg bg-black text-white"
+              >
+                  Start Writing
+              </Link>
+          )
+        }
       </div>
 
       <h2 className='mt-8 text-xl font-semibold text-center'>Available Posts</h2>

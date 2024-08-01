@@ -6,9 +6,12 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSession, useUser } from "@descope/nextjs-sdk/client";
 
 export default function Page({ params }) {
     const [post, setPost] = useState(null)
+    const { user } = useUser();
+    const { sessionToken } = useSession();
 
     const editor = useEditor({
         extensions: [StarterKit],
@@ -47,14 +50,17 @@ export default function Page({ params }) {
 
     const togglePublishedStatus = async () => {
         try {
-            const { data } = await axios.put('/api/posts/toggleStatus', { postId: params.postId })
-
-            setPost(data.data)
+            const { data } = await axios.put("/api/posts/toggleStatus", {
+                postId: params.postId,
+                sessionToken,
+            });
+     
+            setPost(data.data);
         } catch (error) {
-            alert('Something went wrong')     
-            console.log(error);   
+            alert("Something went wrong");
+            console.log(error);
         }
-    }
+     };
 
     return (
         post && (
@@ -73,7 +79,17 @@ export default function Page({ params }) {
                     <EditorContent editor={editor} />
                 </div>
 
-                <Button variant="default" className='px-6 mt-6' onClick={() => togglePublishedStatus()}>{ post.published ? 'Unpublish' : 'Publish' }</Button>
+                {
+                    user?.roleNames?.includes("admin") && (
+                        <Button
+                            variant="default"
+                            className="px-6 mt-6"
+                            onClick={() => togglePublishedStatus()}
+                        >
+                            {post.published ? "Unpublish" : "Publish"}
+                        </Button>
+                    )
+                }
             </div>
         )
     )
