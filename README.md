@@ -2,7 +2,7 @@
 
 This repository demonstrates how to add authentication and RBAC in a Next.js application using the the Descope Next.js SDK.
 
-This is a starter template. Check out the full code in the `main` branch.
+> This is a starter template. Check out the full code in the `main` branch.
 
 ## Running the Project Locally
 
