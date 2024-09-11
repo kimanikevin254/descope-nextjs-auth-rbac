@@ -14,11 +14,11 @@ Having met the prerequisites, follow these steps:
 
 1. Create a project on Descope.
 
-    - Under "Who uses your application?", select **Consumer**:
+    - Under "Who uses your application?," select **Consumer**:
 
         ![Selecting the target audience](https://i.imgur.com/MsCgvJ5.png)
 
-    - For "Which authentication methods do you want to use?", select **Magic Link**:
+    - For "Which authentication methods do you want to use?," select **Magic Link**:
 
         ![Selecting the authentication method](https://i.imgur.com/vMWW4Ak.png)
 
@@ -59,16 +59,14 @@ Having met the prerequisites, follow these steps:
     npx prisma migrate dev --name init
     ```
 
-8. Open `app/layout.js` and replace `<YOUR-PROJECT-ID>` with the necessary value.
+8. Run the application using the command `npm run dev` and navigate to "http://localhost:3000". You'll be redirected to the signup page. Complete the auth process.
 
-9. Run the application using the command `npm run dev` and navigate to "http://localhost:3000". You'll be redirected to the signup page. Complete the auth process.
-
-10. Go to the Descope console, select **Authorization** from the sidebar, and click the **+ Role** button. In the "Add Role" modal, provide "editor" as the name and "Can write posts and submit them for approval" as the description. Then click the **Add** button.
+9. Go to the Descope console, select **Authorization** from the sidebar, and click the **+ Role** button. In the "Add Role" modal, provide 'editor' as the name and "Can write posts and submit them for approval" as the description. Then click the **Add** button.
 
     ![Adding a role](https://i.imgur.com/nl5ylFG.png)
 
-    Repeat the same process to create a role for the admin. Provide "admin" as the role and "Can toggle a post's published status as the description".
+    Repeat the same process to create a role for the admin. Provide 'admin' as the role and "Can toggle a post's published status as the description."
 
-11. Assign the editor role to the user and go back to the application. You'll be able to write posts and submit them for approval but you can't toggle their published status.
+10. Assign the 'editor' role to the user and go back to the application. You'll be able to write posts and submit them for approval but you can't toggle their published status.
 
-12. On the Descope console and assign the admin role to the user. Go back to the application, reload it, and you'll be able to toggle a post's published status.
+11. On the Descope console and assign the 'admin' role to the user. Go back to the application, reload it, and you'll be able to toggle a post's published status.

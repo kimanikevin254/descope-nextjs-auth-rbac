@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
    return (
-       <AuthProvider projectId="<YOUR-PROJECT-ID>">
+       <AuthProvider projectId={process.env.DESCOPE_PROJECT_ID}>
            <html lang="en">
                <body
                    className={`${inter.className} max-w-screen-lg mx-auto py-4`}
