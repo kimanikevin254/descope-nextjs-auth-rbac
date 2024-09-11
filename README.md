@@ -70,3 +70,21 @@ Having met the prerequisites, follow these steps:
 10. Assign the 'editor' role to the user and go back to the application. You'll be able to write posts and submit them for approval but you can't toggle their published status.
 
 11. On the Descope console and assign the 'admin' role to the user. Go back to the application, reload it, and you'll be able to toggle a post's published status.
+
+## Application Preview
+
+When you're logged in as an editor:
+
+-   The **Start Writing** button is displayed:
+
+    ![Logged in as an editor](https://i.imgur.com/VhQlMHL.png)
+
+-   The **Publish**/**Unpublish** button is not displayed since only admins are allowed publish/unpublish a post:
+
+    ![Post details page as an editor](https://i.imgur.com/3Z2uq2A.png)
+
+When you're logged in as an admin:
+
+-   You can publish/unpublish a post:
+
+    ![Post details page as an admin](https://i.imgur.com/WUfTDLd.png)
